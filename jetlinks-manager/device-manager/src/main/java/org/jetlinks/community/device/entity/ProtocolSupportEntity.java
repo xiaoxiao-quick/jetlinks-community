@@ -16,19 +16,35 @@ import java.util.Map;
 @Setter
 @Table(name = "dev_protocol")
 public class ProtocolSupportEntity extends GenericEntity<String> {
-
+    /**
+     * 协议名称
+     */
     @Column
     private String name;
 
+    /**
+     * 协议描述
+     */
     @Column
     private String description;
 
+    /**
+     * 协议类型jar
+     */
     @Column
     private String type;
 
+    /**
+     * 1 已发布
+     * null  未发布
+     */
     @Column
     private Byte state;
 
+    /**
+     * {"provider":"org.jetlinks.demo.protocol.DemoProtocolSupportProvider",
+     * "location":"http://localhost:8848/upload/20210308/1368830255155486720.jar"}
+     */
     @Column
     @ColumnType(jdbcType = JDBCType.CLOB)
     @JsonCodec

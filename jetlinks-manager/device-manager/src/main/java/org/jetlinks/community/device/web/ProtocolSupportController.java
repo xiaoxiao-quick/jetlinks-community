@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.hswebframework.utils.StringUtils;
 import org.hswebframework.web.authorization.annotation.Authorize;
 import org.hswebframework.web.authorization.annotation.QueryAction;
@@ -45,6 +46,7 @@ import java.util.List;
 @Authorize
 @Resource(id = "protocol-supports", name = "协议管理")
 @Tag(name = "协议管理")
+@Slf4j
 public class ProtocolSupportController
     implements ReactiveServiceCrudController<ProtocolSupportEntity, String> {
 
@@ -56,7 +58,7 @@ public class ProtocolSupportController
     private ProtocolSupports protocolSupports;
 
     @Autowired
-    private List<ProtocolSupportLoaderProvider> providers;
+    private List<ProtocolSupportLoaderProvider> providers; // AutoDownloadJarProtocolSuppoortLoader
 
     @Autowired
     private ProtocolSupportLoader supportLoader;
@@ -136,7 +138,7 @@ public class ProtocolSupportController
             .flatMap(def -> supportLoader.load(def))
             .flatMap(ProtocolDetail::of);
     }
-
+8
     @PostMapping("/decode")
     @SaveAction
     @Hidden

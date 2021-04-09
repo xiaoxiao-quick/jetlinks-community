@@ -4,7 +4,7 @@
 
     <appender name="ErrorLOGEventPublisher" class="org.jetlinks.community.logging.logback.SystemLoggingAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>WARN</level>
+            <level>INFO</level>
         </filter>
     </appender>
 

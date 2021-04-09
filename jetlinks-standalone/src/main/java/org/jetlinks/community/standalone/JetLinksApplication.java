@@ -14,6 +14,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Hooks;
+import reactor.tools.agent.ReactorDebugAgent;
 
 import javax.annotation.PostConstruct;
 
@@ -41,7 +43,9 @@ public class JetLinksApplication {
         @PostConstruct
         public void init() {
             // TODO: 2020/1/4 严重影响性能，谨慎开启
-            // Hooks.onOperatorDebug();
+            //Hooks.onOperatorDebug();
+            ReactorDebugAgent.init();
+            ReactorDebugAgent.processExistingClasses();
         }
 
         @EventListener
